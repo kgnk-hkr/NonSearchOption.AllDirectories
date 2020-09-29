@@ -45,12 +45,12 @@ namespace TextSearcherNoMethod
                     Texts txts = new Texts();
                     txts.AddItem(subdir, date.CreationTime.ToString());
 
-                    //一時表示
                     // JSON化前にリスト化する
                     List<Items> texts = new List<Items>
                         {
                             new Items{ file = subdir , create_time = date.CreationTime.ToString()}
                         };
+                    
                     //JSON化
                     string json = JsonSerializer.Serialize(texts);
                     Console.WriteLine(json);
