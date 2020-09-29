@@ -36,31 +36,31 @@ namespace TextSearcherNoMethod
 
             try
             {
-                foreach (string subdir in subdirs)
+                foreach (string files in subdirs)
                 {
                     //作成日を取得するための処理
-                    var date = new FileInfo(subdir);
+                    var date = new FileInfo(files);
 
                     //取得した情報をAddItemに渡す
                     Texts txts = new Texts();
-                    txts.AddItem(subdir, date.CreationTime.ToString());
+                    txts.AddItem(files, date.CreationTime.ToString());
 
                     // JSON化前にリスト化する
                     List<Items> texts = new List<Items>
                         {
-                            new Items{ file = subdir , create_time = date.CreationTime.ToString()}
+                            new Items{ file = files , create_time = date.CreationTime.ToString()}
                         };
-                    
+
                     //JSON化
                     string json = JsonSerializer.Serialize(texts);
                     Console.WriteLine(json);
 
                 }
 
-                //ファイルを探し終わったらディレクトリを探して、subdirに入れる。はじめのscan(args[0]);と同じ処理ルートになる
-                foreach (string subdir in Directory.GetDirectories(dir))
+                //ファイルを探し終わったらディレクトリを探して、filesに入れる。はじめのscan(args[0]);と同じ処理ルートになる
+                foreach (string files in Directory.GetDirectories(dir))
                 {
-                    scan(subdir);
+                    scan(files);
                 }
             }
             catch
